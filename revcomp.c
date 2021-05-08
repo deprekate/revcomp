@@ -46,7 +46,7 @@ void printrc(const char *s) {
 	for (int idx = strlen(s) - 2; idx >= 0; --idx) {
 		printf("%c", basemap[(int)s[idx]]);
 	}
-	putchar(s[strlen(s)-1]);
+	printf("%s", &s[strlen(s)-1]);
 }
 
 int main(int argc, const char** argv) {
@@ -57,16 +57,17 @@ int main(int argc, const char** argv) {
 	size_t i = 0;
 	char head[255];
 	
-	seq = realloc(seq, 0);
+	seq = realloc(seq, 1);
 	seq[0] = '\0';
 	
-
 	while ((read = getline(&line, &len, stdin)) != -1) {
 		if (line[0] == 62){
 			printf(head);
 			printrc(seq);
 			strcpy(head, line);
 			free(seq); seq = NULL;
+			seq = realloc(seq, 1);
+			seq[0] = '\n';
 			i = 0;
 		}else{
 			seq = realloc(seq, i + read);
