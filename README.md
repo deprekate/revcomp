@@ -1,8 +1,13 @@
 # revcomp
 
+To compile:
+```
+$ make
+gcc -Wall -O3 revcomp.c -o revcomp
+```
 
 
-
+To run:
 ```
 $ echo 'ACTGAAAA' | ./revcomp
 TTTTCAGT
